@@ -1,4 +1,4 @@
-# name: ZhiweiSun
+# name: cyan
 set -g cyan (set_color 33FFFF)
 set -g yellow (set_color -o yellow)
 set -g red (set_color -o red)
@@ -16,6 +16,10 @@ set -g FISH_GIT_PROMPT_DIVERGED_REMOTE "$red<>$normal"
 
 function _git_branch_name
   echo (command git symbolic-ref HEAD ^/dev/null | sed -e 's|^refs/heads/||')
+end
+
+function _git_short_sha
+    echo (command git rev-parse --short HEAD ^/dev/null)
 end
 
 function _git_ahead
