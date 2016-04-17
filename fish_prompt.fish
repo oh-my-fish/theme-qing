@@ -14,15 +14,15 @@ set -g FISH_GIT_PROMPT_AHEAD_REMOTE "$magenta>$normal"
 set -g FISH_GIT_PROMPT_BEHIND_REMOTE "$magenta<$normal"
 set -g FISH_GIT_PROMPT_DIVERGED_REMOTE "$red<>$normal"
 
-function _git_branch_name
+function _git_branch_name -d "Display current branch's name"
   echo (command git symbolic-ref HEAD ^/dev/null | sed -e 's|^refs/heads/||')
 end
 
-function _git_short_sha
+function _git_short_sha -d "Display short hash"
     echo (command git rev-parse --short HEAD ^/dev/null)
 end
 
-function _git_ahead
+function _git_ahead -d "git repository is ahead or behind origin"
   set -l commits (command git rev-list --left-right '@{upstream}...HEAD' ^/dev/null)
 
   if [ $status != 0 ]
