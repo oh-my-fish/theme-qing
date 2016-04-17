@@ -5,6 +5,50 @@ set -g FISH_GIT_TIME_SINCE_COMMIT_LONG (set_color CC0000)
 set -g FISH_GIT_TIME_SINCE_COMMIT_NEUTRAL (set_color -o cyan)
 set -g normal (set_color normal)
 
+set -g cyan (set_color 33FFFF)
+set -g yellow (set_color -o yellow)
+set -g red (set_color CC0000)
+set -g green (set_color -o green)
+set -g white (set_color -o white)
+set -g blue (set_color -o blue)
+set -g magenta (set_color -o magenta)
+set -g normal (set_color normal)
+set -g purple (set_color -o purple)
+
+set -g FISH_GIT_PROMPT_ADDED "$green✚$normal"
+set -g FISH_GIT_PROMPT_MODIFIED "$blue""M""$normal"
+set -g FISH_GIT_PROMPT_DELETED "$red✖$normal"
+set -g FISH_GIT_PROMPT_RENAMED "$magenta➜$normal"
+set -g FISH_GIT_PROMPT_UNMERGED "$yellow═$normal"
+set -g FISH_GIT_PROMPT_UNTRACKED "$cyan✭$normal"
+set -g FISH_GIT_PROMPT_CLEAN "$green✔$normal"
+
+function _git_status
+    if [ (command git rev-parse --git-dir ^/dev/null) ]
+        if [ (command git status | grep -c "working directory clean") -eq 1 ]
+            echo "$FISH_GIT_PROMPT_CLEAN"
+        else
+            if [ (command git status | grep -c "Untracked files:") -ne 0 ]
+                set output $FISH_GIT_PROMPT_UNTRACKED
+            end
+            if [ (command git status | grep -c "new file:") -ne 0 ]
+                set output "$output $FISH_GIT_PROMPT_ADDED"
+            end
+            if [ (command git status | grep -c "renamed:") -ne 0 ]
+                set output "$output $FISH_GIT_PROMPT_RENAMED"
+            end
+            if [ (command git status | grep -c "modified:") -ne 0 ]
+                set output "$output $FISH_GIT_PROMPT_MODIFIED"
+            end
+            if [ (command git status | grep -c "deleted:") -ne 0 ]
+                set output "$output $FISH_GIT_PROMPT_DELETED"
+            end
+            echo $output
+        end
+    end
+end
+
+
 function _git_time_since_commit
     if [ (command git rev-parse --git-dir ^/dev/null) ]
         # Only proceed if there is actually a commit.
@@ -50,6 +94,9 @@ function _git_time_since_commit
 end
 
 function fish_right_prompt
-    set -l git_status (_git_time_since_commit)
-    echo -n -s $git_status
+    set -l git_info (_git_time_since_commit)
+    set -l git_status (_git_status)
+
+    set git_info "$git_info$git_status"
+    echo -n -s $git_info
 end

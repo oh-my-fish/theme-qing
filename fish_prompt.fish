@@ -1,6 +1,6 @@
 # name: cyan
 set -g cyan (set_color 33FFFF)
-set -g yellow (set_color -o yellow)
+set -g yellow (set_color CCFF00)
 set -g red (set_color -o red)
 set -g green (set_color -o green)
 set -g white (set_color -o white)
@@ -50,8 +50,9 @@ function fish_prompt
   set -l cwd $green(basename (prompt_pwd))
 
   if [ (_git_branch_name) ]
-    set -l git_branch $blue(_git_branch_name)$normal
-    set git_info "$green($git_branch$green)$normal"
+    set -l git_branch $yellow(_git_branch_name)
+    set -l git_sha $magenta(_git_short_sha)$normal
+    set git_info "$green($git_branch#$normal$git_sha$green)$normal"
 
     set -l git_branch_ahead (_git_ahead)
     set git_info "$git_info $git_branch_ahead"
