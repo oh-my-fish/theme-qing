@@ -47,16 +47,14 @@ function _git_ahead -d "git repository is ahead or behind origin"
 end
 
 function fish_prompt
-  set -l cwd $green(basename (prompt_pwd))
+    set -l cwd $green(basename (prompt_pwd))
+    if [ (command git rev-parse --git-dir ^/dev/null) ]
+        set -l git_branch $yellow(_git_branch_name)
+        set -l git_sha $magenta(_git_short_sha)$normal
+        set -l git_branch_ahead (_git_ahead)
+        
+        set git_info "$green($git_branch#$normal$git_sha$green)$normal $git_branch_ahead"
+    end
 
-  if [ (_git_branch_name) ]
-    set -l git_branch $yellow(_git_branch_name)
-    set -l git_sha $magenta(_git_short_sha)$normal
-    set git_info "$green($git_branch#$normal$git_sha$green)$normal"
-
-    set -l git_branch_ahead (_git_ahead)
-    set git_info "$git_info $git_branch_ahead"
-  end
-
-  echo -n -s $normal $cyan (whoami) '@' $normal $blue (hostname -s) $normal ' ' $cwd ' '  $git_info $yellow' ✗ '$normal
+    echo -n -s $normal $cyan (whoami) '@' $normal $blue (hostname -s) $normal ' ' $cwd ' '  $git_info $yellow' ✗ '$normal
 end
