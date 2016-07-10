@@ -1,4 +1,6 @@
 #### cyan
+
+[![Join the chat at https://gitter.im/oh-my-fish/theme-qing](https://badges.gitter.im/oh-my-fish/theme-qing.svg)](https://gitter.im/oh-my-fish/theme-qing?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > A theme for [Oh My Fish][omf-link].
 
 [![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)](/LICENSE)
