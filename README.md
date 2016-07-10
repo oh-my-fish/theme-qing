@@ -1,11 +1,11 @@
 #### cyan
 
-[![Join the chat at https://gitter.im/oh-my-fish/theme-qing](https://badges.gitter.im/oh-my-fish/theme-qing.svg)](https://gitter.im/oh-my-fish/theme-qing?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > A theme for [Oh My Fish][omf-link].
 
 [![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)](/LICENSE)
 [![Fish Shell Version](https://img.shields.io/badge/fish-v2.2.0-007EC7.svg?style=flat-square)](http://fishshell.com)
 [![Oh My Fish Framework](https://img.shields.io/badge/Oh%20My%20Fish-Framework-007EC7.svg?style=flat-square)](https://www.github.com/oh-my-fish/oh-my-fish)
+[![Join the chat at https://gitter.im/oh-my-fish/theme-qing](https://badges.gitter.im/oh-my-fish/theme-qing.svg)](https://gitter.im/oh-my-fish/theme-qing?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ![IMG](https://cloud.githubusercontent.com/assets/8684553/14587898/02053638-04ee-11e6-9b6f-f7314f2cb180.png)
 
