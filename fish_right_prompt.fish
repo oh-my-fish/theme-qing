@@ -24,7 +24,7 @@ set -g FISH_GIT_PROMPT_UNTRACKED "$cyan✭$normal"
 set -g FISH_GIT_PROMPT_CLEAN "$green✔$normal"
 
 function _git_status -d "git repo status about Untracked, new file and so on."
-    if [ (command git rev-parse --git-dir ^/dev/null) ]
+    if [ (command git rev-parse --git-dir 2> /dev/null) ]
         if [ (command git status | grep -c "working directory clean") -eq 1 ]
             echo "$FISH_GIT_PROMPT_CLEAN"
         else
@@ -50,7 +50,7 @@ end
 
 
 function _git_time_since_commit -d "Display the time since last commit"
-    if [ (command git rev-parse --git-dir ^/dev/null) ]
+    if [ (command git rev-parse --git-dir 2> /dev/null) ]
         # Only proceed if there is actually a commit.
         if [ (command git log 2>&1 > /dev/null | grep -c "^fatal:") -eq 0 ]
             # Get the last commit.
