@@ -56,16 +56,16 @@ function _git_time_since_commit -d "Display the time since last commit"
             # Get the last commit.
             set last_commit (command git log --pretty=format:'%at' -1 2> /dev/null)
             set now (command date +%s)
-            set seconds_since_last_commit (math "$now-$last_commit")
+            set seconds_since_last_commit (math -s0 "$now-$last_commit")
 
             # Totals
-            set MINUTES (math "$seconds_since_last_commit / 60")
-            set HOURS (math "$seconds_since_last_commit/3600")
+            set MINUTES (math -s0 "$seconds_since_last_commit / 60")
+            set HOURS (math -s0 "$seconds_since_last_commit/3600")
 
             # Sub-hours and sub-minutes
-            set DAYS (math "$seconds_since_last_commit / 86400")
-            set SUB_HOURS (math "$HOURS % 24")
-            set SUB_MINUTES (math "$MINUTES % 60")
+            set DAYS (math -s0 "$seconds_since_last_commit / 86400")
+            set SUB_HOURS (math -s0 "$HOURS % 24")
+            set SUB_MINUTES (math -s0 "$MINUTES % 60")
 
             if git status -s > /dev/null
                 if [ "$MINUTES" -gt 30 ]
