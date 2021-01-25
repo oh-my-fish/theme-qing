@@ -10,6 +10,6 @@
 
 function fish_greeting -d "what's up, fish?"
     if test $LINES -ge 20 -a $COLUMNS -ge 80 > /dev/null
-        bash (dirname (status -f))/archey.sh
+        bash (dirname (status -f))/../archey.sh
     end
 end
